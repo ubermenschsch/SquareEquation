@@ -1,0 +1,2 @@
+# SquareEquation
+Solves square equation
