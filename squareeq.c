@@ -3,12 +3,14 @@
 
 const double EPSILON = 1E-6;
 
-void solve_eq(const double a, const double b, const double c, double *px1, double *px2);
-void solve_sq(const double a, const double b, const double c, double *px1, double *px2);
+void solve_equation(const double a, const double b, const double c, double *px1, double *px2);
+void solve_square(const double a, const double b, const double c, double *px1, double *px2);
 void solve_lin(const double b, const double c, double *px1);
 void solve_without_variables(const double c, double *px1);
 void input_sq(double *pa, double *pb, double *pc);
 void output_sq(const double x1, const double x2);
+void clear_input(void);
+int is_zero(double x);
 
 int main()
 {
@@ -16,7 +18,7 @@ int main()
     input_sq(&a, &b, &c);
 
 	double x1 = NAN, x2 = NAN;
-	solve_eq(a, b, c, &x1, &x2);
+	solve_equation(a, b, c, &x1, &x2);
 
     output_sq(x1, x2);
 
@@ -35,30 +37,27 @@ void input_sq(double *pa, double *pb, double *pc)
     {
         printf("Uncorrect data were entered\nTry again:\n");
 
-        while (getchar() != '\n')
-        {
-            continue;
-        }
+        clear_input();
 
         entered_num = scanf("%lg %lg %lg", pa, pb, pc);
         symbol = getchar();
     }
 }
 
-void solve_eq(const double a, const double b, const double c, double *px1, double *px2)
+void solve_equation(const double a, const double b, const double c, double *px1, double *px2)
 {
-    if (fabs(a) < EPSILON)
+    if (is_zero(a))
     {
         solve_lin(b, c, px1);
         *px2 = *px1;
     }
     else
     {
-        solve_sq(a, b, c, px1, px2);
+        solve_square(a, b, c, px1, px2);
     }
 }
 
-void solve_sq(const double a, const double b, const double c, double *px1, double *px2)
+void solve_square(const double a, const double b, const double c, double *px1, double *px2)
 {
     double discr = b*b - 4*a*c;
 
@@ -76,7 +75,7 @@ void solve_sq(const double a, const double b, const double c, double *px1, doubl
 
 void solve_lin(const double b, const double c, double *px1)
 {
-    if (fabs(b) < EPSILON)
+    if (is_zero(b))
     {
         solve_without_variables(c, px1);
     }
@@ -88,7 +87,7 @@ void solve_lin(const double b, const double c, double *px1)
 
 void solve_without_variables(const double c, double *px1)
 {
-    if (fabs(c) < EPSILON)
+    if (is_zero(c))
     {
         *px1 = INFINITY;                                                                    // any equation
     }
@@ -110,7 +109,7 @@ void output_sq(const double x1, const double x2)
     }
     else
     {
-        if (fabs(x1 - x2) < EPSILON)
+        if (is_zero(x1 - x2))
         {
             printf("Solution of this qudratic equation:\nx=%lg\n", x1);
         }
@@ -124,4 +123,18 @@ void output_sq(const double x1, const double x2)
         }
     }
 }
+
+void clear_input(void)
+{
+    while (getchar() != '\n')
+    {
+        continue;
+    }
+}
+
+int is_zero(double x)
+{
+    return fabs(x) < EPSILON;
+}
+
 // enum, struct, assert, unit-test                                               
