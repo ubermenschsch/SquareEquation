@@ -26,7 +26,7 @@ struct Roots
 {
     double x1 = NAN;
     double x2 = NAN;
-    NumRoots num_roots;
+    int num_roots;
 };
 
 void solve_equation(const struct Coefficients coeff, struct Roots * roots);
@@ -37,5 +37,6 @@ void input_sq(struct Coefficients * coeff);
 void output_sq(const struct Roots roots);
 void clear_input(void);
 int is_zero(double x);
+void test(void);
 
 #endif // SQUARE_EQ_H

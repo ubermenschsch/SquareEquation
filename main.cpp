@@ -1,8 +1,13 @@
 #include "SquareEq.h"
 #define DEBUG
+#define TEST
 
 int main()
 {
+    #ifdef TEST
+        test();
+    #endif
+
     struct Coefficients coeff;
     input_sq(&coeff);
     #ifdef DEBUG
