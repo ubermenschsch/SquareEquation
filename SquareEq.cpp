@@ -102,7 +102,10 @@ void output_sq(const struct Roots roots)
     }
     else if (roots.num_roots == ONE_ROOT || is_zero(roots.x1 - roots.x2))
     {
-        printf("Solution of this qudratic equation:\nx=%lg\n", roots.x1);
+        if (is_zero(roots.x1))
+            printf("Solution of this qudratic equation:\nx=0\n");
+        else
+            printf("Solution of this qudratic equation:\nx=%lg\n", roots.x1);
     }
     else if (roots.x1 > roots.x2)
     {
