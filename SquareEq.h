@@ -33,10 +33,15 @@ void solve_equation(const struct Coefficients coeff, struct Roots * roots);
 void solve_square(const struct Coefficients coeff, struct Roots * roots);
 void solve_lin(const struct Coefficients coeff, struct Roots * roots);
 void solve_without_variables(const struct Coefficients coeff, struct Roots * roots);
+
 void input_sq(struct Coefficients * coeff);
 void output_sq(const struct Roots roots);
+
 void clear_input(void);
 int is_zero(double x);
+
 void test(void);
+void test_input(FILE * fp, struct Coefficients * coeff, struct Roots * scan_roots);
+void test_assert(const struct Roots roots, const struct Roots scan_roots);
 
 #endif // SQUARE_EQ_H

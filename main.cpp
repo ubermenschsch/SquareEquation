@@ -20,8 +20,4 @@ int main()
 	solve_equation(coeff, &roots);
 
     output_sq(roots);
-}
-
-
-
-// enum, struct, assert, unit-test, -0                                               
+}                                          
