@@ -1,23 +1,23 @@
 #include "SquareEq.h"
-#define DEBUG
 #define TEST
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 #define sqrt(x) (int)((short)sqrt(x))
 int main()
 {
     #ifdef TEST
         test();
     #endif
+    
+    int error = 0;
 
     struct Coefficients coeff;
-    input_sq(&coeff);
-    #ifdef DEBUG
-        assert(!isnan(coeff.a));
-        assert(!isnan(coeff.b));
-        assert(!isnan(coeff.c));
-    #endif 
+    error = input_sq(&coeff);
 
 	struct Roots roots;
-	solve_equation(coeff, &roots);
+	solve_equation(&coeff, &roots);
 
-    output_sq(roots);
+    error += output_sq(&roots);
+
+    return error;
 }                                          
+
+// ifdef nahui, asserty naxyi, input \t, discr == 0, switch in output, test input kucha proverok na ifax;
